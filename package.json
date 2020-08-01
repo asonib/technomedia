@@ -1,0 +1,15 @@
+{
+  "name": "technoapp",
+  "version": "1.0.0",
+  "description": "REST API Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Aryan Soni",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
