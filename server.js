@@ -5,7 +5,8 @@ const app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-app.use('/', require('./routes/auth'));
+app.use('/api', require('./routes/auth/login'));
+app.use('/api', require('./routes/auth/register'));
 
 const port = process.env.port || 3000;
 app.listen(port, () => {
