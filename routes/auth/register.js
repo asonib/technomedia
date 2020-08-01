@@ -42,10 +42,17 @@ router.post('/auth/register', [
         avatar: avatar,
     })
     await new_user.save()
-
-
-    console.log();
-    return res.json({payload: new_user})
+    try {
+        const payload = {
+            id: new_user._id
+        }
+        jwt.sign(payload, keys.jwtSecret, { expiresIn: 360000 }, (err, token) => {
+            if (err) throw err;
+            return res.json({ token: token });
+        });
+    } catch (err) {
+        return res.json({errors: [{'msg': 'error getting user'}]})
+    }
 })
 
 module.exports = router;

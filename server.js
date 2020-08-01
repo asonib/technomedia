@@ -8,18 +8,8 @@ const app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-// Express session
-app.use(
-    session({
-      secret: 'secret',
-      resave: true,
-      saveUninitialized: true
-    })
-  );
-  
-  // Passport middleware
-  app.use(passport.initialize());
-  app.use(passport.session());
+// Passport Config
+require('./services/passportjs/passport')(passport);
   
 
 mongoose.connect('mongodb://localhost/contact', {
@@ -30,6 +20,19 @@ mongoose.connect('mongodb://localhost/contact', {
 }).catch((err) => {
     console.error(`Error Connecting to DB ${err}`)
 })
+
+// Express session
+app.use(
+    session({
+      secret: 'secret',
+      resave: true,
+      saveUninitialized: true
+    })
+);
+  
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api', require('./routes/auth/login'));
 app.use('/api', require('./routes/auth/register'));
