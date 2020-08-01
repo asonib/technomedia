@@ -34,17 +34,18 @@ router.post('/auth/register', [
 
     const avatar = normalize(gravatar.url(req.body.email, { s: "200", d: "mm", r: "pg" }), { forceHttps: true });
 
-    await new Users.save({
+    const new_user = new Users({
         name: req.body.name,
         email: req.body.email,
         password: hash,
         role: req.body.role,
         avatar: avatar,
     })
+    await new_user.save()
 
 
-    console.log(req.body);
-    return res.json({payload: req.body})
+    console.log();
+    return res.json({payload: new_user})
 })
 
 module.exports = router;
