@@ -7,7 +7,7 @@ const gravatar = require('gravatar');
 const normalize = require('normalize-url');
 const jwt = require('jsonwebtoken')
 
-require('../../model/Users')
+require('../../models/Users')
 const Users = mongoose.model('user');
 
 /*

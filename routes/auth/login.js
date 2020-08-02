@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 // Load User model
-const Users = require('../../model/Users');
+const Users = require('../../models/Users');
 
 // Login
 router.post('/auth/login', [ 
