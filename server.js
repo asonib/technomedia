@@ -34,6 +34,20 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/', (req, res) => {
+    return res.json({
+        'request': {
+            'login': {
+                'method': 'POST',
+                'accessibility': 'public',
+                'desc': 'lgin'
+            }
+        },
+        'response': {
+            'token': 'kjedbjbdsjksanJBJVBDJVDKAMSNBASDVDSVKSbkjccdKJKKBVBCjkh -example'
+        }
+    })
+})
 app.use('/api', require('./routes/auth/login'));
 app.use('/api', require('./routes/auth/register'));
 
