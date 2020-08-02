@@ -5,6 +5,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
 const gravatar = require('gravatar');
 const normalize = require('normalize-url');
+const jwt = require('jsonwebtoken')
 
 require('../../model/Users')
 const Users = mongoose.model('user');
@@ -25,7 +26,7 @@ router.post('/auth/register', [
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    const user = await Users.findOne({email: req.email})
+    const user = await Users.findOne({email: req.body.email})
     if(user){
         return res.json({errors: [{'msg': 'Email Already Exist'}]})
     }
@@ -46,7 +47,7 @@ router.post('/auth/register', [
         const payload = {
             id: new_user._id
         }
-        jwt.sign(payload, keys.jwtSecret, { expiresIn: 360000 }, (err, token) => {
+        jwt.sign(payload, 'AES256_build75', { expiresIn: 360000 }, (err, token) => {
             if (err) throw err;
             return res.json({ token: token });
         });
