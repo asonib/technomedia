@@ -31,6 +31,10 @@ const UserSchema = mongoose.Schema({
     private_key: {
         type: String,
         required: true
+    },
+    verified: {
+        type: Boolean,
+        default: false
     }
 });
 

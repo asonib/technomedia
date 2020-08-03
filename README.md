@@ -1,6 +1,9 @@
 # Technomedia Application
 REST API server built using Node/Express.js
 
+# Registration(SignUp) API
+Registers user and generates a token for automatic login after registration.
+
 **API Address**: `host/api/auth/register`
 
 **Request Format**: `JSON`
@@ -18,7 +21,7 @@ REST API server built using Node/Express.js
 **Validations -ExpressValidator**:
 - `name` required field
 - `email` required field
-- `password` required field & minimum required Length
+- `password` required field & minimum required Length 5
 - `role` required field
 
 **Response Format**: `JSON`
