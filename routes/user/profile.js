@@ -48,8 +48,6 @@ router.post('/user/profile', auth, [
     if (facebook) profileDetails.social.facebook = facebook;
     if (instagram) profileDetails.social.instagram = instagram;
 
-    
-    return res.json(profileDetails)
     try {
         let profile = await Profile.findOne({ user: req.user });
         if (profile) {
