@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs')
 const gravatar = require('gravatar');
 const normalize = require('normalize-url');
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 require('../../models/Users')
 const Users = mongoose.model('user');
@@ -47,7 +48,7 @@ router.post('/auth/register', [
         const payload = {
             id: new_user._id
         }
-        jwt.sign(payload, 'AES256_build75', { expiresIn: 360000 }, (err, token) => {
+        jwt.sign(payload, process.env.JWT_SECRETKEY, { expiresIn: 360000 }, (err, token) => {
             if (err) throw err;
             return res.json({ token: token });
         });
