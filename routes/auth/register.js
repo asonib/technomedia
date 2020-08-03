@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs')
 const gravatar = require('gravatar');
 const normalize = require('normalize-url');
 const jwt = require('jsonwebtoken')
+const { v4: uuidv4 } = require('uuid');
 require('dotenv').config()
 
 require('../../models/Users')
@@ -35,6 +36,8 @@ router.post('/auth/register', [
     const hash = bcrypt.hashSync(req.body.password, salt);
 
     const avatar = normalize(gravatar.url(req.body.email, { s: "200", d: "mm", r: "pg" }), { forceHttps: true });
+    const pub_key = uuidv4();
+    const pri_key = uuidv4();
 
     const new_user = new Users({
         name: req.body.name,
@@ -42,6 +45,8 @@ router.post('/auth/register', [
         password: hash,
         role: req.body.role,
         avatar: avatar,
+        public_key: pub_key,
+        private_key: pri_key
     })
     await new_user.save()
     try {

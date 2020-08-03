@@ -23,6 +23,14 @@ const UserSchema = mongoose.Schema({
     date: {
         type: Date,
         default: Date.now()
+    },
+    public_key: {
+        type: String,
+        required: true
+    },
+    private_key: {
+        type: String,
+        required: true
     }
 });
 
