@@ -155,7 +155,35 @@ return details of all registered users to the authenticated user
         "experience": [],
         "date": "2020-08-03T19:41:41.981Z",
         "__v": 0
+    },
+    {
+        "social": {
+            "twitter": "https://twitter.com/amankr",
+            "linkedin": "https://linkedin.com/amankumar",
+            "instagram": "https://www.instagram.com/iam_ak"
+        },
+        "skills": [
+            "Java, JavaScript, Python"
+        ],
+        "_id": "5f286eae6740f51e9cfc3a21",
+        "user": {
+            "_id": "5f286e3b6740f51e9cfc3a20",
+            "name": "Aman Kumar",
+            "email": "amana@gmail.com",
+            "avatar": "https://gravatar.com/avatar/91a1b0cbd7e670306be721ec81956010?d=mm&r=pg&s=200",
+            "public_key": "20cddc11-e50c-463d-b486-4b00cceb967d"
+        },
+        "phone": "+91 4563218791",
+        "website": "aman.com",
+        "location": "JPR, IND",
+        "department": "Software Tester",
+        "bio": "Tech Enthusiast",
+        "githubusername": "amankr",
+        "experience": [],
+        "date": "2020-08-03T20:08:14.843Z",
+        "__v": 0
     }
+    .......more........
 ]
 ```
 <hr/>
