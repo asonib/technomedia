@@ -31,3 +31,30 @@ Registers user and generates a token for automatic login after registration.
 }
 ```
 <hr/>
+
+# Login(SignIn) API
+Login user and generates a token for authorization
+
+**API Address**: `host/api/auth/login`
+
+**Request Format**: `JSON`
+
+**Request Method**: `POST`
+
+```
+{
+    "email": "aryan85tata@gmail.com",
+    "password": "aes256"
+}
+```
+**Validations -ExpressValidator**:
+- `name` required field
+- `password` required field
+
+**Response Format**: `JSON`
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjg2ODVmNjc0MGY1MWU5Y2ZjM2ExZSIsImlhdCI6MTU5NjQ4NDAwNSwiZXhwIjoxNTk2ODQ0MDA1fQ.BaunpHWG1spxd54E2fDr6Ks1_qXZ-YO-prb-3Ch5kFs"
+}
+```
+<hr/>
