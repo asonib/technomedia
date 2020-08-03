@@ -1,5 +1,6 @@
 # Technomedia Application
 REST API server built using Node/Express.js
+
 **Server Link(Host)**: `https://technomedia-server.herokuapp.com/`
 
 ## Registration(SignUp) API
