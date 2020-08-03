@@ -1,13 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const keys = require('./config/keys')
+require('dotenv').config();
 
 const app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-mongoose.connect(keys.mongoURI, {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(()=>{
@@ -21,7 +21,7 @@ app.use('/api', require('./routes/auth/login'));
 app.use('/api', require('./routes/auth/register'));
 app.use('/api', require('./routes/user/profile'))
 
-const port = process.env.port || 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`server started at port ${port}`)
 });
