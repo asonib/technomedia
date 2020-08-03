@@ -7,6 +7,10 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
+  phone: {
+    type: String,
+    required: true
+  },
   website: {
     type: String
   },

@@ -4,6 +4,8 @@ const passport = require('passport');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+//loading all environment variables
+require('dotenv').config();
 // Load User model
 const Users = require('../../models/Users');
 
@@ -30,7 +32,7 @@ router.post('/auth/login', [
     const payload = {
         id: user._id
     }
-    jwt.sign(payload, 'AES256_build75', {expiresIn: 360000}, (err, token) => {
+    jwt.sign(payload, process.env.JWT_SECRETKEY, {expiresIn: 360000}, (err, token) => {
         if(err) throw err;
         res.json({ token });
     });
