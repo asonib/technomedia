@@ -4,12 +4,13 @@ const auth = require('../../middleware/auth')
 const mongoose = require('mongoose')
 const { check, validationResult } = require('express-validator');
 
-require('../../models/Users')
-const Users = mongoose.model('user');
+require('../../models/Profile')
+const Profiles = mongoose.model('profile');
 
-router.post('/user/profile', auth, [
-    check('department', 'Department Name is required').isString(),
-    check('phone', 'Phone Number is required').isString(),
+router.post('/user/profile', [auth,
+    check('department', 'Department Name is required').not().isEmpty(),
+    // password must be at least 5 chars long
+    check('phone', 'Phone Number is Required').not().isEmpty()
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -33,10 +34,10 @@ router.post('/user/profile', auth, [
 
     profileDetails={}
     profileDetails.user = req.user;
-    if (phone) profileDetails.company = phone;
+    if (phone) profileDetails.phone = phone;
     if (website) profileDetails.website = website;
     if (location) profileDetails.location = location;
-    if (department) profileDetails.status = department;
+    if (department) profileDetails.department = department;
     if (skills) profileDetails.skills = skills;
     if (bio) profileDetails.bio = bio;
     if (githubusername) profileDetails.githubusername = githubusername;
@@ -49,12 +50,12 @@ router.post('/user/profile', auth, [
     if (instagram) profileDetails.social.instagram = instagram;
 
     try {
-        let profile = await Profile.findOne({ user: req.user });
+        let profile = await Profiles.findOne({ user: req.user });
         if (profile) {
-            const profile = await (await Profile.findOneAndUpdate({ user: req.user }, { $set: profileDetails }, { new: true }));
+            const profile = await Profiles.findOneAndUpdate({ user: req.user }, { $set: profileDetails }, { new: true });
             return res.status(200).json(profile);
         }
-        profile = new Profile(profileDetails);
+        profile = new Profiles(profileDetails);
         await profile.save();
         return res.status(200).json(profile);
     } catch (err) {
