@@ -22,7 +22,7 @@ router.post('/auth/register', [
     check('role', 'Role is required').isString(),
     check('email', 'Email is required').isEmail(),
     // password must be at least 5 chars long
-    check('password', 'Password is required').isLength({ min: 6 })
+    check('password', 'Password is required').isLength({ min: 5 })
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
