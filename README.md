@@ -205,3 +205,96 @@ Deletes all the user data for logged In user(Closes the account).
 }
 ```
 <hr/>
+
+## Posts - API
+Authenticated users can post messages in a chat forum
+
+**API Address**: `host/api/forum`
+
+**Request Format**: `JSON`
+
+**Request Method**: `POST`
+
+```
+{
+    "text": "i love this platform!!"
+}
+```
+**Validations -ExpressValidator**:
+- `text` required field
+
+**Response Format**: `JSON`
+```
+{
+    "post": {
+        "date": "2020-08-04T10:36:45.769Z",
+        "_id": "5f293bfde3d5bb1ab43aaef1",
+        "user": "5f28685f6740f51e9cfc3a1e",
+        "text": "this platform is very user friendly!!!",
+        "__v": 0
+    }
+}
+```
+<hr/>
+
+## Get All Posts  - API
+Authenticated users can see all other posts
+
+**API Address**: `host/api/forum`
+
+**Request Format**: `JSON`
+
+**Request Method**: `GET`
+
+**Response Format**: `JSON`
+```
+{
+    "msg": [
+        {
+            "date": "2020-08-04T10:12:44.752Z",
+            "_id": "5f2935122ae39820f423e3eb",
+            "user": {
+                "_id": "5f2934b72ae39820f423e3e9",
+                "name": "Test",
+                "email": "test@gmail.com",
+                "avatar": "https://gravatar.com/avatar/1aedb8d9dc4751e229a335e371db8058?d=mm&r=pg&s=200"
+            },
+            "text": "i love this paltfrom!",
+            "__v": 0
+        },
+        {
+            "date": "2020-08-04T10:12:44.752Z",
+            "_id": "5f2939162ae39820f423e3ec",
+            "user": {
+                "_id": "5f2934b72ae39820f423e3e9",
+                "name": "Test",
+                "email": "test@gmail.com",
+                "avatar": "https://gravatar.com/avatar/1aedb8d9dc4751e229a335e371db8058?d=mm&r=pg&s=200"
+            },
+            "text": "i got a new and a better job today!",
+            "__v": 0
+        },
+        ......more.......
+    ]
+}
+```
+<hr/>
+
+## Delete a Post - API
+Users can delete posted messages
+
+**API Address**: `host/api/forum/:<post_id>`
+
+**Request Format**: `JSON`
+
+**Request Method**: `DELETE`
+
+**Validations**: `user can delete his/her post only`
+
+**Response Format**: `JSON`
+```
+{
+    "msg": "post deleted"
+}
+```
+<hr/>

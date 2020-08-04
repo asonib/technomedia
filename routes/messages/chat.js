@@ -48,4 +48,22 @@ router.get('/forum', auth, async(req, res) => {
     }
 })
 
+router.delete('/forum/:id', auth, async(req ,res) => {
+    try {
+        const post = await Chats.findById({_id: req.params.id})
+        if(!post){
+            return res.json('No Post Found')
+        }
+        if(post.user.toString() !== req.user){
+            return res.status(400).json({msg: 'Not authorized to delete'});
+        }
+        await post.remove();
+        return res.json({msg: 'post deleted'});
+        
+    } catch (err) {
+        console.log('Server Error');
+        res.status(400).json(err.message);
+    }
+})
+
 module.exports = router;
