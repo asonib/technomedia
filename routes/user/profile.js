@@ -100,6 +100,9 @@ router.delete('/user/deleteuser', auth, async (req, res) => {
         if(!u){
             return res.json({'msg': 'No User To Delete'})
         }
+        if(u._id.toString() !== req.user){
+            return res.status(400).json({msg: 'Not authorized to delete'});
+        }
         //if user is found
         const profile = await Profiles.findOneAndRemove({user: req.user})
         const user = await Users.findOneAndRemove({_id: req.user})
