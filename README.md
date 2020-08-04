@@ -194,7 +194,7 @@ Deletes all the user data for logged In user(Closes the account).
 
 **API Address**: `host/api/user/deleteuser`
 
-**Request Format**: `JSON`
+**Validation**: `user token will be verified before deleting the account`
 
 **Request Method**: `DELETE`
 
