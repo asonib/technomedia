@@ -246,6 +246,8 @@ Authenticated users can see all other posts
 
 **Request Method**: `GET`
 
+**Validations**: `only authenticated user can get all posts`
+
 **Response Format**: `JSON`
 ```
 {
@@ -289,7 +291,7 @@ Users can delete posted messages
 
 **Request Method**: `DELETE`
 
-**Validations**: `user can delete his/her post only`
+**Validations**: `user can delete his/her posts only`
 
 **Response Format**: `JSON`
 ```
