@@ -35,7 +35,7 @@ router.post('/forum', [auth,
 
 /*
 */
-router.get('/forum', auth, async(req, res) => {
+router.get('/forum', async(req, res) => {
     try {
         const posts = await Chats.find().populate('user', ['name', 'email', 'avatar'])
         if(!posts){
@@ -59,7 +59,7 @@ router.delete('/forum/:id', auth, async(req ,res) => {
         }
         await post.remove();
         return res.json({msg: 'post deleted'});
-        
+
     } catch (err) {
         console.log('Server Error');
         res.status(400).json(err.message);
