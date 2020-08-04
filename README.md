@@ -188,3 +188,20 @@ return details of all registered users to the authenticated user
 ]
 ```
 <hr/>
+
+## Delete Account - API
+Deletes all the user data for logged In user(Closes the account).
+
+**API Address**: `host/api/user/deleteuser`
+
+**Request Format**: `JSON`
+
+**Request Method**: `DELETE`
+
+**Response Format**: `JSON`
+```
+{
+    "msg": "User deleted Successfully!"
+}
+```
+<hr/>

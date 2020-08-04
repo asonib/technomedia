@@ -87,3 +87,27 @@ router.post('/user/profile', [auth,
 })
 
 module.exports = router
+
+/*
+    method: DELETE
+    visibility: private
+    response: delete profile of registered user - JSON
+*/
+router.delete('/user/deleteuser', auth, async (req, res) => {
+    
+    try{
+        let u = await Users.findOne({_id: req.user})
+        if(!u){
+            return res.json({'msg': 'No User To Delete'})
+        }
+        //if user is found
+        const profile = await Profiles.findOneAndRemove({user: req.user})
+        const user = await Users.findOneAndRemove({_id: req.user})
+
+        return res.json({'msg': 'User deleted Successfully!'})
+    }catch(err){
+        return res.json([{errors: {
+            'msg': 'Error Deleting User'
+        }}])
+    }
+})
