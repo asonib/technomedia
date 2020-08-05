@@ -295,6 +295,13 @@ Users can delete posted messages
 
 **Validations**: `user can delete his/her posts only`
 
+**Failed Validation Response**
+```
+{
+    "msg": "Not authorized to delete"
+}
+```
+
 **Response Format**: `JSON`
 ```
 {
