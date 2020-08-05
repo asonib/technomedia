@@ -192,6 +192,8 @@ return details of all registered users to the authenticated user
 ## Delete Account - API
 Deletes all the user data for logged In user(Closes the account).
 
+`All the chats in the forum by the user will also be deleted.`
+
 **API Address**: `host/api/user/deleteuser`
 
 **Validation**: `user token will be verified before deleting the account`

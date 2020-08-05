@@ -4,6 +4,7 @@ const router = express.Router()
 const auth = require('../../middleware/auth')
 const { check, validationResult } = require('express-validator');
 
+const Users = require('../../models/Users');
 require('../../models/Chats')
 const Chats = mongoose.model('chat')
 
@@ -39,6 +40,10 @@ router.post('/forum', [auth,
     response: get all posted message
 */
 router.get('/forum', auth, async(req, res) => {
+    let user = await Users.findOne({_id: req.user})
+    if(!user){
+        return res.json({msg: 'User not authorized to fetch the posts'})
+    }
     try {
         const posts = await Chats.find().populate('user', ['name', 'email', 'avatar'])
         if(!posts){
