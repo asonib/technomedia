@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth')
 const mongoose = require('mongoose')
 const { check, validationResult } = require('express-validator');
 
+const Chats = require('../../models/Chats');
 require('../../models/Profile')
 const Profiles = mongoose.model('profile');
 require('../../models/Users')
@@ -103,9 +104,10 @@ router.delete('/user/deleteuser', auth, async (req, res) => {
         if(u._id.toString() !== req.user){
             return res.status(400).json({msg: 'Not authorized to delete'});
         }
-        //if user is found
+        //if user is found delete all profile, user details and all the posts
         const profile = await Profiles.findOneAndRemove({user: req.user})
         const user = await Users.findOneAndRemove({_id: req.user})
+        await Chats.remove({user: req.user})
 
         return res.json({'msg': 'User deleted Successfully!'})
     }catch(err){

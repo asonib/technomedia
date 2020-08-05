@@ -34,8 +34,11 @@ router.post('/forum', [auth,
 })
 
 /*
+    method: GET
+    visibility: private
+    response: get all posted message
 */
-router.get('/forum', async(req, res) => {
+router.get('/forum', auth, async(req, res) => {
     try {
         const posts = await Chats.find().populate('user', ['name', 'email', 'avatar'])
         if(!posts){
@@ -48,6 +51,12 @@ router.get('/forum', async(req, res) => {
     }
 })
 
+
+/*
+    method: DELETE
+    visibility: private
+    response: delete posted message by post_id
+*/
 router.delete('/forum/:id', auth, async(req ,res) => {
     try {
         const post = await Chats.findById({_id: req.params.id})
