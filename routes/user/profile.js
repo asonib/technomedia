@@ -15,7 +15,7 @@ const Users = mongoose.model('user');
     visibility: private
     response: profile of all registered user - JSON
 */
-router.get('/user/all', auth, async(req, res) => {
+router.get('/user/all', async(req, res) => {
     try {
         let profiles = await Profiles.find().populate('user', ['name', 'avatar', 'email', 'public_key'])
         return res.json(profiles)
